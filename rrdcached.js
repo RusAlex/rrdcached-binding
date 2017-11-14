@@ -211,10 +211,10 @@ RRDCache.fetch = function(filename, consFunction, options, callback){
 		return;
 	}
 	var resolution = options !== null && options.resolution !== undefined ? util.format("-r %s", options.resolution) : "";
-	var start = options !== null && options.start !== undefined ? util.format("-s %s", options.resolution) : "";
-	var end = options !== null && options.end !== undefined ? util.format("-e %s", options.end) : "";
+	var start = options !== null && options.start !== undefined ? util.format("%s", options.start) : "";
+	var end = options !== null && options.end !== undefined ? util.format("%s", options.end) : "";
 	var align = options !== null && (options.alignStart !== undefined && options.alignStart || options.a !== undefined && options.a) ? "-a" : "";
-	RRDCache.write(util.format("FETCH %s %s %s %s %s %s", filename, consFunction, resolution, start, end, align), function(err, reply){
+	RRDCache.write(util.format("FETCH %s %s %s %s %s", filename, consFunction, start, end, align), function(err, reply){
 		if(err){
 			callback(err);
 			return;
